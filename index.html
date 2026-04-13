@@ -1,63 +1,166 @@
- <style>
+<!DOCTYPE html>
+<html>
+<head>
+<title>IGRIS</title>
 
-/* BLUE AURA (RISING POWER) */
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #000000, #020617);
+  overflow: hidden;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 80px;
+}
+
+/* AURA BASE */
+.aura {
+  width: 300px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔵 BLUE AURA (UPWARD FLOW) */
 .blue::before {
   content: "";
   position: absolute;
-  width: 300px;
-  height: 600px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(
+  width: 200%;
+  height: 200%;
+  left: -50%;
+  bottom: -100%;
+  background: repeating-linear-gradient(
     to top,
-    rgba(0,150,255,0.9),
-    rgba(0,150,255,0.4),
-    transparent
+    rgba(0,150,255,0.9) 0px,
+    rgba(0,150,255,0.7) 20px,
+    rgba(0,150,255,0.3) 40px,
+    transparent 80px
   );
-  filter: blur(30px);
-  animation: riseEnergy 1.2s linear infinite;
+  filter: blur(25px);
+  animation: flowUp 3s linear infinite;
 }
 
-/* RED AURA (PRESSURE DOWN) */
+/* 🔴 RED AURA (DOWNWARD PRESSURE) */
 .red::before {
   content: "";
   position: absolute;
-  width: 250px;
-  height: 600px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(
+  width: 200%;
+  height: 200%;
+  left: -50%;
+  top: -100%;
+  background: repeating-linear-gradient(
     to bottom,
-    rgba(255,0,0,0.8),
-    rgba(255,0,0,0.3),
-    transparent
+    rgba(255,0,0,0.9) 0px,
+    rgba(255,0,0,0.6) 20px,
+    rgba(255,0,0,0.3) 40px,
+    transparent 80px
   );
-  filter: blur(30px);
-  animation: fallEnergy 1.2s linear infinite;
+  filter: blur(25px);
+  animation: flowDown 3s linear infinite;
 }
 
-/* UPWARD FLOW */
-@keyframes riseEnergy {
-  0% {
-    transform: translate(-50%, 40px);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, -40px);
-    opacity: 1;
-  }
+/* CONTINUOUS FLOW (NO BLINK) */
+@keyframes flowUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
 }
 
-/* DOWNWARD PRESSURE */
-@keyframes fallEnergy {
-  0% {
-    transform: translate(-50%, -40px);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, 40px);
-    opacity: 1;
-  }
+@keyframes flowDown {
+  from { transform: translateY(0); }
+  to { transform: translateY(200px); }
 }
 
+/* RED PRESSURE SHAKE */
+.red {
+  animation: shake 0.4s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+/* CENTER */
+.center {
+  text-align: center;
+}
+
+h1 {
+  font-size: 70px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 40px #00c6ff;
+}
+
+p {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 25px;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 30px #00c6ff;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* BACKGROUND ENERGY */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,150,255,0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: move 25s linear infinite;
+}
+
+@keyframes move {
+  from { transform: translate(0,0); }
+  to { transform: translate(-150px,-150px); }
+}
 </style>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+  <!-- 🔵 PLAYER (DOMINANT) -->
+  <div class="aura blue"></div>
+
+  <!-- CENTER TEXT -->
+  <div class="center">
+    <h1>IGRIS</h1>
+    <p>Arise, become the best version of yourself.</p>
+    <button class="btn">Download APK</button>
+  </div>
+
+  <!-- 🔴 ENEMY (UNDER PRESSURE) -->
+  <div class="aura red"></div>
+
+</div>
+
+</body>
+</html>
