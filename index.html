@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGRIS - Arise</title>
+<title>IGRIS</title>
 
 <style>
 * {
@@ -14,8 +14,51 @@
 }
 
 body {
-  background: #000;
   color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 APP UI BACKGROUND (VISIBLE NOW) */
+.app-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  opacity: 0.6;
+  filter: blur(3px);
+}
+
+/* CARDS */
+.card {
+  background: linear-gradient(135deg, #0ea5e9, #020617);
+  border-radius: 15px;
+  padding: 20px;
+  opacity: 0.85;
+  box-shadow: 0 0 25px rgba(0,198,255,0.5);
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.small { width: 30%; }
+.medium { width: 50%; }
+.large { width: 100%; }
+
+/* 🔥 LIGHT OVERLAY */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.25);
+  z-index: -1;
 }
 
 /* HERO */
@@ -25,13 +68,11 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 40px;
-  position: relative;
 }
 
-/* TEXT CENTER */
+/* TEXT */
 .center {
   text-align: center;
-  max-width: 500px;
 }
 
 .center h1 {
@@ -52,14 +93,11 @@ button {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 20px #00c6ff;
 }
 
-/* DISABLED BUTTON */
 .disabled {
   background: gray;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 /* CHARACTERS */
@@ -77,11 +115,6 @@ button {
   text-align: center;
 }
 
-.features h2 {
-  font-size: 40px;
-  margin-bottom: 40px;
-}
-
 .feature-grid {
   display: flex;
   gap: 20px;
@@ -93,11 +126,10 @@ button {
   width: 250px;
   padding: 20px;
   border-radius: 15px;
-  background: #111;
-  box-shadow: 0 0 20px rgba(0,198,255,0.2);
+  background: rgba(0,0,0,0.6);
 }
 
-/* COMING SOON */
+/* COMING */
 .coming {
   text-align: center;
   padding: 60px 20px;
@@ -115,6 +147,25 @@ input {
 
 <body>
 
+<!-- 🔥 BACKGROUND -->
+<div class="app-bg">
+  <div class="card large">🔥 Workout Streak: 3 Days</div>
+
+  <div class="row">
+    <div class="card medium">💧 Water Intake: 60%</div>
+    <div class="card small">📊 Calories: 1800 kcal</div>
+  </div>
+
+  <div class="card large">🏋️ Today's Workout Plan</div>
+
+  <div class="row">
+    <div class="card medium">🥗 Diet Plan</div>
+    <div class="card small">👤 Level: Beginner</div>
+  </div>
+</div>
+
+<div class="overlay"></div>
+
 <!-- HERO -->
 <div class="hero">
 
@@ -127,10 +178,7 @@ input {
     <p>Arise. Become the best version of yourself.</p>
 
     <button class="disabled">APK Coming Soon</button>
-
-    <p style="margin-top:10px; font-size:14px;">
-      🚀 Launching soon — stay tuned
-    </p>
+    <p style="margin-top:10px;">🚀 Launching soon</p>
   </div>
 
   <div class="character">
@@ -147,14 +195,14 @@ input {
     <div class="feature">🏋️ Track Workouts</div>
     <div class="feature">💧 Water Tracker</div>
     <div class="feature">📊 Progress System</div>
-    <div class="feature">🎮 Level Up System</div>
+    <div class="feature">🎮 Level System</div>
   </div>
 </div>
 
-<!-- COMING SOON / EMAIL -->
+<!-- EMAIL -->
 <div class="coming">
-  <h2>Be the First to Experience IGRIS</h2>
-  <p>Enter your email to get notified at launch</p>
+  <h2>Be the First</h2>
+  <p>Get notified when we launch</p>
 
   <input type="email" placeholder="Enter your email">
   <br><br>
