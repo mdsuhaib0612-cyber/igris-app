@@ -1,110 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>IGRIS</title>
+<meta charset="UTF-8">
+<title>IGRIS</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: url('./bg.jpg') no-repeat center center/cover;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: url('./bg.jpg') no-repeat center center/cover;
+}
 
-    /* DARK OVERLAY */
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.65);
-      z-index: 1;
-    }
+/* DARK OVERLAY */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+}
 
-    /* CENTER CONTENT */
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 4;
-    }
+/* CENTER CONTENT */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+}
 
-    h1 {
-      color: white;
-      font-size: 80px;
-      letter-spacing: 5px;
-      text-shadow: 0 0 40px #00c6ff;
-      margin-bottom: 10px;
-    }
+/* TEXT */
+h1 {
+  color: white;
+  font-size: 90px;
+  letter-spacing: 6px;
+  text-shadow: 0 0 60px #00c6ff;
+  margin-bottom: 10px;
+}
 
-    p {
-      color: #ddd;
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
+p {
+  color: #ddd;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
 
-    button {
-      padding: 15px 35px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(45deg, #00c6ff, #0072ff);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 20px #00c6ff;
-      transition: 0.3s;
-    }
+/* BUTTON */
+button {
+  padding: 15px 35px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 25px #00c6ff;
+  transition: 0.3s;
+}
 
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px #00c6ff;
-    }
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px #00c6ff;
+}
 
-    /* CHARACTERS */
-    .character {
-      position: absolute;
-      bottom: 0;
-      width: 420px;
-      pointer-events: none;
-      z-index: 3;
-    }
+/* CHARACTER BASE */
+.character {
+  position: absolute;
+  bottom: 0;
+  width: 500px;
+  z-index: 3;
+}
 
-    /* BLUE (PLAYER - STRONG) */
-    .blue-char {
-      left: 5%;
-      filter: drop-shadow(0 0 60px #00c6ff)
-              drop-shadow(0 0 120px #00c6ff);
-    }
+/* 🔵 BLUE CHARACTER (LEFT - STRONG) */
+.blue-char {
+  left: -80px; /* pushes it slightly outside screen for cinematic look */
+  filter: drop-shadow(0 0 60px #00c6ff)
+          drop-shadow(0 0 120px #00c6ff);
+}
 
-    /* RED (ENEMY - WEAK / PRESSURED) */
-    .red-char {
-      right: 5%;
-      transform: scale(0.9);
-      opacity: 0.85;
-      filter: drop-shadow(0 0 40px red);
-    }
+/* 🔴 RED CHARACTER (RIGHT - UNDER PRESSURE) */
+.red-char {
+  right: -80px;
+  transform: scale(0.95);
+  opacity: 0.9;
+  filter: drop-shadow(0 0 40px red);
+}
 
-  </style>
+/* OPTIONAL: FADE EDGES (REMOVES HARD BOX LOOK) */
+.blue-char, .red-char {
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- OVERLAY -->
-  <div class="overlay"></div>
+<div class="overlay"></div>
 
-  <!-- CHARACTERS -->
-  <img src="./blue.png" class="character blue-char">
-  <img src="./red.png" class="character red-char">
+<!-- CHARACTERS -->
+<img src="./blue.png" class="character blue-char">
+<img src="./red.png" class="character red-char">
 
-  <!-- CONTENT -->
-  <div class="content">
-    <h1>IGRIS</h1>
-    <p>Arise. Become the best version of yourself.</p>
-    <button>Download APK</button>
-  </div>
+<!-- CONTENT -->
+<div class="content">
+  <h1>IGRIS</h1>
+  <p>Arise. Become the best version of yourself.</p>
+  <button>Download APK</button>
+</div>
 
 </body>
 </html>
