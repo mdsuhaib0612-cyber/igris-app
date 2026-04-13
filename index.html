@@ -18,30 +18,43 @@ body {
   background: #000;
 }
 
-/* 🔥 FAKE APP UI BACKGROUND */
+/* 🔥 LIGHT GLOW BACKGROUND */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,198,255,0.2), transparent 70%);
+  z-index: 0;
+}
+
+/* 🔥 APP UI BACKGROUND (VISIBLE NOW) */
 .app-bg {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 0;
+
   padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  opacity: 0.25;
-  filter: blur(5px);
+
+  opacity: 0.65;      /* 🔥 FIXED */
+  filter: blur(2px);  /* 🔥 LESS BLUR */
 }
 
-/* APP CARDS */
+/* CARDS */
 .card {
   background: linear-gradient(135deg, #0ea5e9, #020617);
   border-radius: 15px;
   padding: 20px;
   color: white;
-  box-shadow: 0 0 20px rgba(0,198,255,0.3);
+
+  opacity: 0.85;  /* 🔥 VISIBLE */
+  box-shadow: 0 0 25px rgba(0,198,255,0.5);
 }
 
-/* DIFFERENT SECTIONS */
 .row {
   display: flex;
   gap: 20px;
@@ -51,12 +64,12 @@ body {
 .medium { width: 50%; }
 .large { width: 100%; }
 
-/* OVERLAY */
+/* 🔥 LIGHT OVERLAY (NOT DARK ANYMORE) */
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.25); /* 🔥 FIXED */
   z-index: 1;
 }
 
@@ -79,8 +92,8 @@ body {
 
 .character img {
   width: 100%;
-  z-index: 3;
   position: relative;
+  z-index: 3;
 }
 
 /* 🔵 BLUE AURA */
@@ -103,6 +116,7 @@ body {
   animation: auraDown 2.5s linear infinite;
 }
 
+/* AURA MOTION */
 @keyframes auraUp {
   0% { transform: translateY(0); }
   100% { transform: translateY(-25px); }
