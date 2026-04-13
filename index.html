@@ -10,7 +10,7 @@ body {
   height: 100vh;
   overflow: hidden;
   font-family: Arial, sans-serif;
-  background: url('./bg.jpg') no-repeat center center/cover;
+  background: url('./bg.jpg') no-repeat center/cover;
 }
 
 /* DARK OVERLAY */
@@ -18,7 +18,7 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   z-index: 1;
 }
 
@@ -28,44 +28,32 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   z-index: 5;
+  text-align: center;
 }
 
-/* TEXT */
 h1 {
   color: white;
   font-size: 90px;
-  letter-spacing: 6px;
   text-shadow: 0 0 60px #00c6ff;
-  margin-bottom: 10px;
 }
 
 p {
-  color: #ddd;
+  color: #ccc;
   font-size: 22px;
-  margin-bottom: 30px;
 }
 
-/* BUTTON */
 button {
   padding: 15px 35px;
-  font-size: 18px;
   border: none;
   border-radius: 30px;
   background: linear-gradient(45deg, #00c6ff, #0072ff);
   color: white;
   cursor: pointer;
   box-shadow: 0 0 25px #00c6ff;
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 50px #00c6ff;
-}
-
-/* CHARACTER BASE */
+/* CHARACTER */
 .character {
   position: absolute;
   bottom: 0;
@@ -73,26 +61,91 @@ button:hover {
   z-index: 3;
 }
 
-/* 🔵 BLUE CHARACTER (LEFT - STRONG) */
+/* BLUE SIDE */
 .blue-char {
-  left: -80px; /* pushes it slightly outside screen for cinematic look */
-  filter: drop-shadow(0 0 60px #00c6ff)
-          drop-shadow(0 0 120px #00c6ff);
+  left: -80px;
+  filter: drop-shadow(0 0 80px #00c6ff);
 }
 
-/* 🔴 RED CHARACTER (RIGHT - UNDER PRESSURE) */
+/* RED SIDE */
 .red-char {
   right: -80px;
   transform: scale(0.95);
-  opacity: 0.9;
   filter: drop-shadow(0 0 40px red);
 }
 
-/* OPTIONAL: FADE EDGES (REMOVES HARD BOX LOOK) */
-.blue-char, .red-char {
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+/* 🔵 BLUE AURA (FLOWING UP) */
+.blue-aura {
+  position: absolute;
+  left: -100px;
+  bottom: 0;
+  width: 600px;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,198,255,0.5), transparent 70%);
+  animation: rise 3s linear infinite;
+  z-index: 2;
 }
+
+/* 🔴 RED AURA (PRESSURE DOWN) */
+.red-aura {
+  position: absolute;
+  right: -100px;
+  bottom: 0;
+  width: 600px;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,0,0,0.4), transparent 70%);
+  animation: sink 3s linear infinite;
+  z-index: 2;
+}
+
+/* FLOW ANIMATIONS */
+@keyframes rise {
+  0% { transform: translateY(40px) scale(1); opacity: 0.5; }
+  100% { transform: translateY(-60px) scale(1.2); opacity: 0; }
+}
+
+@keyframes sink {
+  0% { transform: translateY(-20px) scale(1); opacity: 0.4; }
+  100% { transform: translateY(40px) scale(0.9); opacity: 0; }
+}
+
+/* ⚡ LIGHTNING FLASH */
+.lightning {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(255,255,255,0.1), transparent);
+  animation: flash 4s infinite;
+  z-index: 4;
+}
+
+@keyframes flash {
+  0%, 90%, 100% { opacity: 0; }
+  92% { opacity: 1; }
+}
+
+/* 🪨 FLOATING ROCKS */
+.rock {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #444;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
+
+/* RANDOM ROCK POSITIONS */
+.r1 { left: 20%; bottom: 100px; }
+.r2 { left: 30%; bottom: 150px; animation-delay: 1s; }
+.r3 { right: 25%; bottom: 120px; animation-delay: 2s; }
+.r4 { right: 35%; bottom: 180px; animation-delay: 0.5s; }
 
 </style>
 </head>
@@ -100,6 +153,19 @@ button:hover {
 <body>
 
 <div class="overlay"></div>
+
+<!-- AURA -->
+<div class="blue-aura"></div>
+<div class="red-aura"></div>
+
+<!-- LIGHTNING -->
+<div class="lightning"></div>
+
+<!-- ROCKS -->
+<div class="rock r1"></div>
+<div class="rock r2"></div>
+<div class="rock r3"></div>
+<div class="rock r4"></div>
 
 <!-- CHARACTERS -->
 <img src="./blue.png" class="character blue-char">
