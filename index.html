@@ -7,7 +7,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at center, #000000, #050a1a);
+  background: radial-gradient(circle at center, #000000, #020617);
   color: white;
   overflow: hidden;
 }
@@ -18,64 +18,97 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  padding: 0 60px;
+  padding: 0 80px;
 }
 
-/* AURA BASE */
+/* AURA CONTAINER */
 .aura {
-  width: 280px;
+  width: 300px;
   height: 500px;
-  border-radius: 20px;
   position: relative;
 }
 
-/* BLUE AURA (PLAYER) */
-.blue {
-  background: rgba(0, 150, 255, 0.05);
-  box-shadow: 0 0 40px rgba(0,150,255,0.4);
+/* ENERGY CORE */
+.aura::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  filter: blur(40px);
 }
 
+/* BLUE ENERGY */
 .blue::before {
-  content: "";
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,150,255,0.6), transparent 70%);
-  animation: pulseBlue 2s infinite;
+  background: rgba(0,150,255,0.8);
+  animation: energyPulse 1.5s infinite ease-in-out;
 }
 
-/* RED AURA (ENEMY) */
-.red {
-  background: rgba(255, 0, 0, 0.05);
-  box-shadow: 0 0 40px rgba(255,0,0,0.4);
-}
-
+/* RED ENERGY */
 .red::before {
+  background: rgba(255,0,0,0.8);
+  animation: energyPulse 1.5s infinite ease-in-out;
+}
+
+/* AURA FLAMES */
+.aura::after {
   content: "";
   position: absolute;
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,0,0,0.6), transparent 70%);
-  animation: pulseRed 2s infinite;
+  width: 100%;
+  height: 200%;
+  bottom: -60%;
+  background: linear-gradient(to top, rgba(0,150,255,0.5), transparent);
+  filter: blur(20px);
+  animation: rise 1s infinite linear;
 }
 
-/* PULSE ANIMATION */
-@keyframes pulseBlue {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.6; }
+.red::after {
+  background: linear-gradient(to top, rgba(255,0,0,0.5), transparent);
 }
 
-@keyframes pulseRed {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.6; }
+/* ENERGY MOVEMENT */
+@keyframes rise {
+  0% { transform: translateY(40px); opacity: 0.5; }
+  50% { transform: translateY(-40px); opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0.5; }
+}
+
+/* PULSE CORE */
+@keyframes energyPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.3); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* LIGHTNING */
+.lightning {
+  position: absolute;
+  width: 3px;
+  height: 200px;
+  background: white;
+  opacity: 0;
+  filter: blur(1px);
+}
+
+.blue-lightning {
+  left: 15%;
+  top: 30%;
+  animation: strike 2s infinite;
+}
+
+.red-lightning {
+  right: 15%;
+  top: 40%;
+  animation: strike 2s infinite 1s;
+}
+
+/* LIGHTNING FLASH */
+@keyframes strike {
+  0%, 90%, 100% { opacity: 0; transform: scaleY(0); }
+  95% { opacity: 1; transform: scaleY(1); }
 }
 
 /* CENTER */
@@ -86,7 +119,7 @@ body {
 h1 {
   font-size: 70px;
   letter-spacing: 4px;
-  text-shadow: 0 0 25px rgba(0,150,255,1);
+  text-shadow: 0 0 40px rgba(0,150,255,1);
 }
 
 p {
@@ -105,28 +138,27 @@ p {
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 25px rgba(0,150,255,0.8);
-}
-
-.btn:hover {
-  transform: scale(1.05);
   box-shadow: 0 0 40px rgba(0,150,255,1);
 }
 
-/* ENERGY PARTICLES */
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* BACKGROUND ENERGY */
 body::before {
   content: "";
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: move 20s linear infinite;
+  background: radial-gradient(circle, rgba(0,150,255,0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: move 25s linear infinite;
 }
 
 @keyframes move {
   from { transform: translate(0,0); }
-  to { transform: translate(-100px,-100px); }
+  to { transform: translate(-150px,-150px); }
 }
 </style>
 
@@ -134,19 +166,23 @@ body::before {
 
 <body>
 
+<!-- LIGHTNING NEAR CHARACTERS -->
+<div class="lightning blue-lightning"></div>
+<div class="lightning red-lightning"></div>
+
 <div class="hero">
 
-  <!-- PLAYER AURA -->
+  <!-- PLAYER ENERGY -->
   <div class="aura blue"></div>
 
-  <!-- CENTER TEXT -->
+  <!-- CENTER -->
   <div class="center">
     <h1>IGRIS</h1>
     <p>Arise, become the best version of yourself.</p>
     <button class="btn">Download APK</button>
   </div>
 
-  <!-- ENEMY AURA -->
+  <!-- ENEMY ENERGY -->
   <div class="aura red"></div>
 
 </div>
