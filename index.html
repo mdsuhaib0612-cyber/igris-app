@@ -204,7 +204,65 @@ input {
   }
 
 }
+/* 📱 EXTRA FIX FOR SMALL PHONES (PORTRAIT) */
+@media (max-width: 768px) and (orientation: portrait) {
 
+  .hero {
+    height: auto;
+    padding: 20px;
+  }
+
+  /* STACK ORDER */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* MAKE CHARACTERS SMALLER */
+  .character img {
+    height: 30vh;
+  }
+
+  /* KEEP THEM CENTERED */
+  .character {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+
+  /* TEXT CLEAN */
+  .center {
+    position: relative;
+    transform: none;
+    top: auto;
+    left: auto;
+    margin: 15px 0;
+  }
+
+  .center h1 {
+    font-size: 38px;
+  }
+
+  .center p {
+    font-size: 13px;
+  }
+
+  /* ORDER FIX */
+  .character.left {
+    order: 1;
+  }
+
+  .center {
+    order: 2;
+  }
+
+  .character.right {
+    order: 3;
+  }
+
+}
 /* ⬆️ END HERE ⬆️ */
 
 </style>
