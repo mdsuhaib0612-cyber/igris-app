@@ -2,21 +2,34 @@
 <html>
 <head>
 <title>IGRIS</title>
+
 <style>
 body {
   margin: 0;
-  font-family: Arial;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at center, #0a0f1c, #000000);
   color: white;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0 50px;
+}
+
+.character {
+  width: 300px;
+  opacity: 0.9;
+}
+
+.center {
   text-align: center;
 }
 
-.container {
-  padding: 50px 20px;
-}
-
 h1 {
-  font-size: 50px;
+  font-size: 60px;
   letter-spacing: 3px;
 }
 
@@ -34,50 +47,33 @@ p {
   font-size: 16px;
   border-radius: 25px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .btn:hover {
   background: #0072ff;
   color: white;
 }
-
-.section {
-  margin-top: 60px;
-}
-
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  margin: 15px;
-  border-radius: 15px;
-  display: inline-block;
-  width: 250px;
-}
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
-  <h1>IGRIS</h1>
-  <p>Arise, become the best version of yourself.</p>
+<div class="hero">
 
-  <button class="btn">Download APK</button>
-</div>
+  <!-- LEFT CHARACTER -->
+  <img class="character" src="https://via.placeholder.com/300x500?text=Your+Character" />
 
-<div class="section">
-  <h2>⚔ Features</h2>
+  <!-- CENTER TEXT -->
+  <div class="center">
+    <h1>IGRIS</h1>
+    <p>Arise, become the best version of yourself.</p>
+    <button class="btn">Download APK</button>
+  </div>
 
-  <div class="card">XP Leveling System</div>
-  <div class="card">Workout Quests</div>
-  <div class="card">AI Coach</div>
-  <div class="card">Water Tracker</div>
-</div>
+  <!-- RIGHT CHARACTER -->
+  <img class="character" src="https://via.placeholder.com/300x500?text=Opponent" />
 
-<div class="section">
-  <h2>🔥 Become Stronger Everyday</h2>
-  <p>Closer than yesterday. Stronger than before.</p>
 </div>
 
 </body>
