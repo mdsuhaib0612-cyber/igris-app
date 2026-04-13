@@ -18,30 +18,35 @@ body {
   background: #000;
 }
 
-/* 🔥 LIGHT GLOW BACKGROUND */
-body::before {
-  content: "";
+/* 🔥 PARALLAX WRAPPER */
+.parallax {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0,198,255,0.2), transparent 70%);
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
   z-index: 0;
+  animation: moveBg 20s linear infinite;
 }
 
-/* 🔥 APP UI BACKGROUND (VISIBLE NOW) */
+/* 🔥 APP UI BACKGROUND */
 .app-bg {
-  position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 0;
-
   padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 
-  opacity: 0.65;      /* 🔥 FIXED */
-  filter: blur(2px);  /* 🔥 LESS BLUR */
+  opacity: 0.65;
+  filter: blur(2px);
+}
+
+/* PARALLAX ANIMATION */
+@keyframes moveBg {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, -15px); }
+  100% { transform: translate(0, 0); }
 }
 
 /* CARDS */
@@ -50,8 +55,7 @@ body::before {
   border-radius: 15px;
   padding: 20px;
   color: white;
-
-  opacity: 0.85;  /* 🔥 VISIBLE */
+  opacity: 0.85;
   box-shadow: 0 0 25px rgba(0,198,255,0.5);
 }
 
@@ -64,16 +68,16 @@ body::before {
 .medium { width: 50%; }
 .large { width: 100%; }
 
-/* 🔥 LIGHT OVERLAY (NOT DARK ANYMORE) */
+/* LIGHT OVERLAY */
 .overlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.25); /* 🔥 FIXED */
+  background: rgba(0,0,0,0.25);
   z-index: 1;
 }
 
-/* MAIN LAYOUT */
+/* MAIN CONTENT */
 .container {
   display: flex;
   align-items: center;
@@ -92,8 +96,8 @@ body::before {
 
 .character img {
   width: 100%;
-  position: relative;
   z-index: 3;
+  position: relative;
 }
 
 /* 🔵 BLUE AURA */
@@ -116,7 +120,6 @@ body::before {
   animation: auraDown 2.5s linear infinite;
 }
 
-/* AURA MOTION */
 @keyframes auraUp {
   0% { transform: translateY(0); }
   100% { transform: translateY(-25px); }
@@ -157,7 +160,7 @@ body::before {
   to { transform: translateY(200px); opacity: 0; }
 }
 
-/* CENTER TEXT */
+/* TEXT */
 .center {
   text-align: center;
   color: white;
@@ -189,23 +192,25 @@ button {
 
 <body>
 
-<!-- 🔥 APP UI BACKGROUND -->
-<div class="app-bg">
+<!-- 🔥 PARALLAX BACKGROUND -->
+<div class="parallax">
+  <div class="app-bg">
 
-  <div class="card large">🔥 Workout Streak: 3 Days</div>
+    <div class="card large">🔥 Workout Streak: 3 Days</div>
 
-  <div class="row">
-    <div class="card medium">💧 Water Intake: 60%</div>
-    <div class="card small">📊 Calories: 1800 kcal</div>
+    <div class="row">
+      <div class="card medium">💧 Water Intake: 60%</div>
+      <div class="card small">📊 Calories: 1800 kcal</div>
+    </div>
+
+    <div class="card large">🏋️ Today's Workout Plan</div>
+
+    <div class="row">
+      <div class="card medium">🥗 Diet Plan</div>
+      <div class="card small">👤 Profile Level: Beginner</div>
+    </div>
+
   </div>
-
-  <div class="card large">🏋️ Today's Workout Plan</div>
-
-  <div class="row">
-    <div class="card medium">🥗 Diet Plan</div>
-    <div class="card small">👤 Profile Level: Beginner</div>
-  </div>
-
 </div>
 
 <div class="overlay"></div>
