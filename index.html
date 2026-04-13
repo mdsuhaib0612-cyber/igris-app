@@ -29,10 +29,9 @@ body {
   position: relative;
 }
 
-/* BLUE AURA (PLAYER) */
+/* BLUE AURA */
 .blue {
-  background: rgba(0, 150, 255, 0.05);
-  box-shadow: 0 0 40px rgba(0,150,255,0.4);
+  box-shadow: 0 0 50px rgba(0,150,255,0.7);
 }
 
 .blue::before {
@@ -43,14 +42,13 @@ body {
   top: -10%;
   left: -10%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,150,255,0.6), transparent 70%);
-  animation: pulseBlue 2s infinite;
+  background: radial-gradient(circle, rgba(0,150,255,0.7), transparent 70%);
+  animation: pulse 2s infinite;
 }
 
-/* RED AURA (ENEMY) */
+/* RED AURA */
 .red {
-  background: rgba(255, 0, 0, 0.05);
-  box-shadow: 0 0 40px rgba(255,0,0,0.4);
+  box-shadow: 0 0 50px rgba(255,0,0,0.7);
 }
 
 .red::before {
@@ -61,21 +59,55 @@ body {
   top: -10%;
   left: -10%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,0,0,0.6), transparent 70%);
-  animation: pulseRed 2s infinite;
+  background: radial-gradient(circle, rgba(255,0,0,0.7), transparent 70%);
+  animation: pulse 2s infinite;
 }
 
-/* PULSE ANIMATION */
-@keyframes pulseBlue {
+/* PULSE */
+@keyframes pulse {
   0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 1; }
   100% { transform: scale(1); opacity: 0.6; }
 }
 
-@keyframes pulseRed {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.6; }
+/* FLAMES */
+.aura::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  bottom: -50%;
+  background: linear-gradient(to top, rgba(0,150,255,0.4), transparent);
+  animation: flame 2s infinite ease-in-out;
+}
+
+.red::after {
+  background: linear-gradient(to top, rgba(255,0,0,0.4), transparent);
+}
+
+@keyframes flame {
+  0% { transform: translateY(20px); opacity: 0.6; }
+  50% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0.6; }
+}
+
+/* LIGHTNING */
+.lightning {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  animation: flash 3s infinite;
+}
+
+.lightning:nth-child(1) { left: 20%; animation-delay: 0s; }
+.lightning:nth-child(2) { left: 50%; animation-delay: 1s; }
+.lightning:nth-child(3) { left: 80%; animation-delay: 2s; }
+
+@keyframes flash {
+  0%, 90%, 100% { opacity: 0; }
+  95% { opacity: 1; height: 100%; }
 }
 
 /* CENTER */
@@ -86,7 +118,7 @@ body {
 h1 {
   font-size: 70px;
   letter-spacing: 4px;
-  text-shadow: 0 0 25px rgba(0,150,255,1);
+  text-shadow: 0 0 30px rgba(0,150,255,1);
 }
 
 p {
@@ -105,15 +137,14 @@ p {
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 25px rgba(0,150,255,0.8);
+  box-shadow: 0 0 30px rgba(0,150,255,1);
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(0,150,255,1);
+  transform: scale(1.1);
 }
 
-/* ENERGY PARTICLES */
+/* PARTICLES */
 body::before {
   content: "";
   position: absolute;
@@ -134,19 +165,24 @@ body::before {
 
 <body>
 
+<!-- LIGHTNING EFFECT -->
+<div class="lightning"></div>
+<div class="lightning"></div>
+<div class="lightning"></div>
+
 <div class="hero">
 
-  <!-- PLAYER AURA -->
+  <!-- PLAYER -->
   <div class="aura blue"></div>
 
-  <!-- CENTER TEXT -->
+  <!-- CENTER -->
   <div class="center">
     <h1>IGRIS</h1>
     <p>Arise, become the best version of yourself.</p>
     <button class="btn">Download APK</button>
   </div>
 
-  <!-- ENEMY AURA -->
+  <!-- ENEMY -->
   <div class="aura red"></div>
 
 </div>
