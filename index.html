@@ -205,51 +205,47 @@ input {
 
 }
 /* 📱 EXTRA FIX FOR SMALL PHONES (PORTRAIT) */
+/* 📱 FINAL PORTRAIT FIX */
 @media (max-width: 768px) and (orientation: portrait) {
 
-  .hero {
-    height: auto;
-    padding: 20px;
-  }
-
-  /* STACK ORDER */
   .hero {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* 🔥 CENTER EVERYTHING */
+    gap: 10px; /* 🔥 CONTROL SPACING */
+    padding: 20px 10px;
+    height: auto;
   }
 
-  /* MAKE CHARACTERS SMALLER */
-  .character img {
-    height: 30vh;
-  }
-
-  /* KEEP THEM CENTERED */
+  /* CHARACTERS */
   .character {
     position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
+    margin: 0; /* 🔥 REMOVE EXTRA SPACE */
   }
 
-  /* TEXT CLEAN */
+  .character img {
+    height: 28vh; /* 🔥 BALANCED SIZE */
+  }
+
+  /* TEXT */
   .center {
     position: relative;
     transform: none;
     top: auto;
     left: auto;
-    margin: 15px 0;
+    margin: 10px 0; /* 🔥 SMALL GAP ONLY */
   }
 
   .center h1 {
-    font-size: 38px;
+    font-size: 36px;
   }
 
   .center p {
     font-size: 13px;
   }
 
-  /* ORDER FIX */
+  /* ORDER */
   .character.left {
     order: 1;
   }
@@ -263,8 +259,6 @@ input {
   }
 
 }
-/* ⬆️ END HERE ⬆️ */
-
 </style>
 </head>
 
